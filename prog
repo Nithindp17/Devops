@@ -1,5 +1,109 @@
-abcd
-bsijkf
-bhdgjd
-jhskjldk
-judfj
+Exp 1
+1  wget https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.1+12/OpenJDK17U-jdk_x64_linux_hotspot_17.0.1_12.tar.gz
+2  mkdir -p ~/local
+3  tar -xvzf OpenJDK17U-jdk_x64_linux_hotspot_17.0.1_12.tar.gz -C ~/local
+4  nano ~/.bashrc
+5  # Set JAVA_HOME and PATH for OpenJDK
+    export JAVA_HOME=~/local/jdk-17.0.1+12
+    export PATH=$JAVA_HOME/bin:$PATH
+6  In nano, press Ctrl + O to save and Ctrl + X to exit.
+7  source ~/.bashrc
+8  You should see output similar to:
+    openjdk version &quot;17.0.1&quot; 2021-10-19
+    OpenJDK Runtime Environment (build 17.0.1+12-39)
+    OpenJDK 64-Bit Server VM (build 17.0.1+12-39, mixed mode)
+
+    INSTALLATION OF MAVEN
+
+1) DOWNLOAD MAVEN USING wget in the terminal
+wget https://downloads.apache.org/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.tar.gz
+
+2) EXTRACT THE TAR FILE
+tar -xvzf apache-maven-3.9.5-bin.tar.gz -C ~/
+
+3) Rename the Extracted Folder:
+mv ~/apache-maven-3.9.5 ~/maven
+
+4) Add Maven to PATH:
+echo export PATH=$PATH:~/maven/bin >> ~/.bashrc
+
+5) Apply the Changes:
+source ~/.bashrc
+
+6) Verify the Installation:
+mvn -version
+
+      INSTALLATION OF GRADLE
+
+1) DOWNLOAD GRADLE USING wget in the terminal
+wget https://services.gradle.org/distributions/gradle-8.4-bin.zip
+
+2) EXTRACT THE TAR FILE
+unzip gradle-8.4-bin.zip -d ~/
+
+3) Rename the Extracted Folder:
+mv ~/gradle-8.4 ~/gradle
+
+4) Add Gradle to PATH:
+echo export PATH=$PATH:~/gradle/bin>> ~/.bashrc
+
+5) Apply the Changes:
+source ~/.bashrc
+
+6) Verify the Installation:
+gradle -v
+
+Exp 2
+1. Create a New Maven Project
+mvn archetype:generate -DgroupId=com.example -DartifactId=hello-world -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+2  cd hello-world
+3  mvn package
+4  java -cp target/hello-world-1.0-SNAPSHOT.jar com.example.App
+5  mvn clean
+
+Exp 3
+1. Create a New directory  for GRADLE Project
+          mkdir hello-world-gradle
+
+2. Navigate to the Project Directory
+            cd hello-world-gradle
+3.Initialize a Gradle project using the following command:
+          gradle init --type java-application
+4  gradle build
+5  gradle run
+6  gradle clean
+
+Exp 4
+1) Download jenkins using wget in the terminal
+wget https://get.jenkins.io/war-stable/latest/jenkins.war -P ~/local/jenkins
+
+2) Create a Directory for Jenkins
+mkdir -p ~/local/jenkins
+
+3) Ensure the downloaded jenkins.war file is in the directory: mv jenkins.war ~/local/jenkins/
+
+4) Run Jenkins
+cd ~/local/jenkins
+
+5) Optional
+gedit /home/student/.jenkins/config.xml
+(DisableSignup must be made False)
+
+5) Run Jenkins with the following command:
+java -jar jenkins.war --httpPort=8080
+
+6   cat ~/.jenkins/secrets/initialAdminPassword
+
+Exp 5
+1  mvn archetype:generate -DgroupId=com.example -DartifactId=HelloMaven -DarchetypeArtifactId=maven-archetype-quickstart  -DinteractiveMode=false
+2  cd HelloMaven
+3  mvn package
+4  java -cp target/HelloMaven-1.0-SNAPSHOT.jar com.example.App
+
+Part B: Migrate the Application to Gradle
+1  mkdir HelloMavenGradle
+2  cd HelloMavenGradle
+3  gradle init --type java-application
+4  mv ~/Desktop/HelloMaven/src/main/java/com/example/App.java ~/Desktop/HelloGradle/app/src/main/java/com/example/
+5  gradle build
+6  gradle run
